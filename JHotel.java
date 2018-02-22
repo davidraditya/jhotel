@@ -2,8 +2,8 @@
 /**
  * Class Pesanan
  *
- * David Raditya
- * @v22.2.18
+ * David Raditya K - 1506690372
+ * @v2018.2.22
  */
 public class JHotel
 {
