@@ -16,7 +16,7 @@ public class Customer
      * 
      * @param id, nama.
      */
-    public void Customer(int id, String nama)
+    public Customer(int id, String nama)
     {
         this.id = id;
         this.nama = nama;
@@ -66,5 +66,6 @@ public class Customer
      * Untuk mencetak data
      */
     public void printData(){
+        System.out.printf("Nama Customer %s\n", nama);
     }
 }

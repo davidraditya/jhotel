@@ -89,5 +89,6 @@ public class Lokasi
      * Untuk mencetak data
      */
     public void printData(){
+        System.out.printf(deskripsiLokasi);
     }
 }

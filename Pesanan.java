@@ -14,6 +14,7 @@ public class Pesanan
     private String jenis_kamar;
     private boolean isDiproses;
     private boolean isSelesai;
+    private Room kamar;
 
 
     /**
@@ -72,6 +73,17 @@ public class Pesanan
     }
     
     /**
+     * Accessor for objects of class Pesanan
+     * untuk meminta keterangan kamar
+     * 
+     * @return kamar.
+     */
+    public Room getRoom()
+    {
+        return kamar;
+    }
+    
+    /**
      * Mutator for objects of class Pesanan
      * untuk memberi nilai biaya
      * 
@@ -115,10 +127,22 @@ public class Pesanan
         isSelesai = diproses;
     }
     
+    /**
+     * Mutator for objects of class Pesanan
+     * untuk memberi keterangan kamar
+     * 
+     * @param kamar.
+     */
+    public void setRoom(Room kamar)
+    {
+        this.kamar = kamar;
+    }
+    
     /*
      * Untuk mencetak data
      */
     public void printData()
     {
+        System.out.printf("Harga %.2f\n", biaya);
     }
 }

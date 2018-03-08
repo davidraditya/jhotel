@@ -18,10 +18,11 @@ public class Hotel
      * 
      * @param nama, lokasi.
      */
-    public Hotel(String nama, Lokasi lokasi)
+    public Hotel(String nama, Lokasi lokasi, int bintang)
     {
         this.nama = nama;
         this.lokasi = lokasi;
+        this.bintang = bintang;
     }
 
     /**
@@ -88,5 +89,6 @@ public class Hotel
      * Untuk mencetak data
      */
     public void printData(){
+        System.out.printf("Nama Hotel %s\n", nama);
     }
 }
