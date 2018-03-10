@@ -2,8 +2,8 @@
 /**
  * Enumeration class TipeKamar
  *
- * @author (David Raditya K - 1506690372)
- * @version (2018.8.1)
+ * @author David Raditya K - 1506690372
+ * @version 2018.03.10
  */
 //membuat enum untuk menentukan Tipe Kamar
 public enum TipeKamar

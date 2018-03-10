@@ -2,8 +2,8 @@
 /**
  * Class Pesanan
  *
- * @author (David Raditya K - 1506690372)
- * @version (2018.3.1)
+ * @author David Raditya K - 1506690372
+ * @version 2018.03.10
  */
 public class Hotel
 {
@@ -16,10 +16,11 @@ public class Hotel
     /**
      * Constructor for objects of class Hotel
      * 
-     * @param nama, lokasi.
+     * @param nama, lokasi, bintang.
      */
     public Hotel(String nama, Lokasi lokasi, int bintang)
     {
+        //instance variable
         this.nama = nama;
         this.lokasi = lokasi;
         this.bintang = bintang;
@@ -89,6 +90,9 @@ public class Hotel
      * Untuk mencetak data
      */
     public void printData(){
-        System.out.printf("Nama Hotel %s\n", nama);
+        System.out.printf("\nHotel\n");
+        System.out.println("Nama Hotel: " +nama);
+        System.out.println("Lokasi: " +lokasi.getDeskripsi());
+        System.out.println("Bintang: " +bintang);
     }
 }

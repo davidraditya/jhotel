@@ -1,9 +1,9 @@
 
 /**
- * Class Pesanan
+ * Class Customer
  *
- * @author (David Raditya K - 1506690372)
- * @version (2018.3.1)
+ * @author David Raditya K - 1506690372
+ * @version 2018.03.10
  */
 public class Customer
 {
@@ -66,6 +66,8 @@ public class Customer
      * Untuk mencetak data
      */
     public void printData(){
-        System.out.printf("Nama Customer %s\n", nama);
+        System.out.printf("\nCustomer\n");
+        System.out.println("ID: " +id);
+        System.out.println("Nama: " +nama);
     }
 }

@@ -2,8 +2,8 @@
 /**
  * Class Room
  *
- * @author (David Raditya K - 1506690372)
- * @version (2018.3.8)
+ * @author David Raditya K - 1506690372
+ * @version 2018.03.10
  */
 public class Room
 {
@@ -20,8 +20,16 @@ public class Room
     /**
      * Constructor for objects of class Room
      */
-    public Room()
+    public Room(Hotel hotel, String nomor_kamar, boolean isAvailable, 
+    Customer customer, double dailyTariff, StatusKamar status_kamar)
     {
+        // initialise instance variables
+        this.hotel = hotel;
+        this.nomor_kamar = nomor_kamar;
+        this.isAvailable = isAvailable;
+        this.customer = customer;
+        this.dailyTariff = dailyTariff;
+        this.status_kamar = status_kamar;
     }
 
     /**
@@ -105,19 +113,19 @@ public class Room
         return pesan;
     }
     
-    public void setHotel(){
+    public void setHotel(Hotel hotel){
         this.hotel = hotel;
     }
     
-    public void setID(){
+    public void setID(int id){
         this.id = id;
     }
     
-    public void setNomorKamar(){
+    public void setNomorKamar(String nomor_kamar){
         this.nomor_kamar = nomor_kamar;
     }
     
-    public void setStatusAvailable(){
+    public void setStatusAvailable(boolean isAvailable){
         this.isAvailable = isAvailable;
     }
     
@@ -126,7 +134,7 @@ public class Room
     }
     
     public void setDailyTariff(double dailytariff){
-        this.dailyTariff = dailytariff;
+        dailyTariff = dailytariff;
     }
     
     public void setStatusKamar(StatusKamar status_kamar){
@@ -138,7 +146,13 @@ public class Room
     }
     
     public void printData(){
-        System.out.println(dailyTariff);
+        System.out.printf("\nRoom\n");
+        System.out.println("Nama Hotel: " +hotel.getNama());
+        System.out.println("Nomor Kamar: " +nomor_kamar);
+        System.out.println("Tersedia: " +isAvailable);
+        System.out.println("Pelanggan: " +customer.getNama());
+        System.out.println("Harga: " +dailyTariff);
+        System.out.println("Status Kamar: " +status_kamar);
     }
     
 }

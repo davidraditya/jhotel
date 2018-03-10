@@ -1,37 +1,61 @@
 
 /**
- * Class Pesanan
+ * Class DatabasePesanan
  *
- * David Raditya K - 1506690372
- * @v2018.2.22
+ * @author David Raditya K - 1506690372
+ * @version 2018.03.10
  */
 public class DatabasePesanan
 {
     // instance variables - replace the example below with your own
-    private String[] list_pesanan;
+    private static String[] list_pesanan;
 
-    //public DatabasePesanan(){
-    //}
-
-    public boolean addPesanan(Pesanan baru)
+    /**
+     * 
+     * @return false
+     */
+    public static boolean addPesanan(Pesanan baru)
     {
+        //code
+        
         return false;
     }
     
-    public boolean removePesanan(Pesanan pesan)
+    /**
+     * 
+     * @return false
+     */
+    public static boolean removePesanan(Pesanan pesan)
     {
+        //code
+        
         return false;
     }
     
-    public Pesanan getPesanan(Customer cust)
+    /**
+     * 
+     * @return null
+     */
+    public static Pesanan getPesanan(Customer cust)
     {
+        //code
+        
         return null;
     }
     
-    public String[] getPesananDatabase(){
+    /**
+     * 
+     * @return null
+     */
+    public static String[] getPesananDatabase()
+    {
+        //code
+        
         return null;
     }
     
-    public void pesananDibatalkan(Pesanan pesan){
+    public static void pesananDibatalkan(Pesanan pesan)
+    {
+        //code
     }
 }

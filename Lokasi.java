@@ -2,8 +2,8 @@
 /**
  * Class Pesanan
  *
- * @author (David Raditya K - 1506690372)
- * @version (2018.3.1)
+ * @author David Raditya K - 1506690372
+ * @version 2018.03.10
  */
 public class Lokasi
 {
@@ -20,6 +20,7 @@ public class Lokasi
      */
     public Lokasi(float x_coord, float y_coord, String deskripsiLokasi)
     {
+        // instance variables
         this.x_coord = x_coord;
         this.y_coord = y_coord;
         this.deskripsiLokasi = deskripsiLokasi;
@@ -82,13 +83,16 @@ public class Lokasi
      * @param deskripsi.
      */
     public void setDeskripsi(String deskripsi){
-        this.deskripsiLokasi = deskripsiLokasi;
+        deskripsiLokasi = deskripsi;
     }
     
     /*
      * Untuk mencetak data
      */
     public void printData(){
-        System.out.printf(deskripsiLokasi);
+        System.out.printf("\nLokasi\n");
+        System.out.println("Koordinat X: " +x_coord);
+        System.out.println("Koordinat Y: " +y_coord);
+        System.out.println("Deskripsi: " +deskripsiLokasi);
     }
 }
