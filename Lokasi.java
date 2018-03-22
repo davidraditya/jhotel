@@ -96,7 +96,10 @@ public class Lokasi
         System.out.println("Deskripsi: " +deskripsiLokasi);
     }*/
     
-    public String toString(){
-        return null;
+    public String toString()
+    {
+        return  "\nKoordinat X adalah " +x_coord +
+                "\nKoordinat Y adalah " +y_coord +
+                "\nDeskripsi adalah " +deskripsiLokasi;
     }
 }

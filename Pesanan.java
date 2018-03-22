@@ -1,4 +1,5 @@
 import java.util.*;
+import java.text.*;
 /**
  * Class Pesanan
  *
@@ -21,14 +22,24 @@ public class Pesanan
      * 
      * @param biaya, pelanggan.
      */
-    public Pesanan(double jumlahHari, Customer pelanggan, Room kamar)
+    public Pesanan(double jumlahHari, Customer pelanggan, Room kamar, int hari, int bulan, int tahun)
     {
-        this.jumlahHari = jumlahHari;
-        this.pelanggan = pelanggan;
-        this.kamar = kamar;
-        biaya = kamar.getDailyTariff() * jumlahHari;
+        this.biaya=kamar.getDailyTariff()*jumlahHari;
+        this.jumlahHari=jumlahHari;//instance variable
+        this.pelanggan=pelanggan;//instance variablee
+        this.kamar=kamar;//instance variable
+        tanggalPesan= new Date(hari,bulan,tahun);
     }
 
+    public Pesanan(double jumlahHari, Customer pelanggan, Room kamar, Date tanggalPesan)
+    {
+        this.biaya=kamar.getDailyTariff()*jumlahHari;
+        this.jumlahHari=jumlahHari;//instance variable
+        this.pelanggan=pelanggan;//instance variablee
+        this.kamar=kamar;//instance variable
+        this.tanggalPesan=tanggalPesan;
+    }
+   
     /**
      * Accessor for objects of class Pesanan
      * untuk meminta nilai biaya
@@ -103,6 +114,10 @@ public class Pesanan
      */
     public Date getTanggalPesan()
     {
+        DateFormat formatter = new SimpleDateFormat("'DOB 'dd MMMM yyyy");
+        String output = formatter.format(tanggalPesan);
+        //System.out.print(output);
+        System.out.println(output);
         return tanggalPesan;
     }
     
@@ -197,6 +212,20 @@ public class Pesanan
     }*/
     
     public String toString(){
-        return null;
+        String final_status = "KOSONG";
+        
+        if (isDiproses == true && isSelesai == false){
+            final_status = "DIPROSES";
+        } else if (isDiproses == false && isSelesai == false){
+            final_status = "KOSONG";
+        } else if (isDiproses == false && isSelesai == true){
+            final_status = "SELESAI";
+        }
+        
+        return "Dibuat Oleh " +pelanggan.getNama() +
+                ".Proses booking untuk" +kamar.getHotel()+
+                "Kamar Nomor " + kamar.getNomorKamar()+
+                "dengan tipe kamar yang diinginkan "+kamar.getTipeKamar()+
+                ". Status :" +final_status+ ".";
     }
 }

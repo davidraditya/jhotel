@@ -1,4 +1,4 @@
-
+import java.util.GregorianCalendar;
 /**
  * Class JHotel (Class utama)
  *
@@ -9,7 +9,8 @@ public class JHotel
 {
     public static void main(String args[])
     {
-        
+        Customer cust1 = new Customer(23, "David Raditya", new GregorianCalendar(2018,03,22).getTime());
+           cust1.getDOB();
         
         /*System.out.println("Welcome to JHotel");
         

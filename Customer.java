@@ -1,6 +1,7 @@
 import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.text.*;
 /**
  * Class Customer
  *
@@ -76,6 +77,11 @@ public class Customer
      * @return dob.
      */
     public Date getDOB(){
+        DateFormat formatter = new SimpleDateFormat("'DOB : 'dd MMMM yyyy");
+        String output = formatter.format(dob);
+        //System.out.print(output);
+        System.out.println(output);
+        
         return dob;
     }
     
@@ -137,6 +143,19 @@ public class Customer
     }*/
     
     public String toString(){
-        return null;
+        if(DatabasePesanan.getPesanan(this)!=null){
+            return "\nCustomer ID   : " + id +
+                   "\nName          : " + nama +
+                   "\nE-Mail        : " + email +
+                   "\nDate of Birth : " + dob +
+                   "\nBooking order is in progress";        
+        }
+       
+        else{
+            return "\nCustomer ID   : " + id +
+                   "\nName          : " + nama +
+                   "\nE-Mail        : " + email +
+                   "\nDate of Birth : " + dob;        
+        }
     }
 }
