@@ -3,7 +3,7 @@
  * Class Pesanan
  *
  * @author David Raditya K - 1506690372
- * @version 2018.03.10
+ * @version 2018.03.22
  */
 public class Lokasi
 {
@@ -88,11 +88,15 @@ public class Lokasi
     
     /*
      * Untuk mencetak data
-     */
+     *
     public void printData(){
         System.out.printf("\nLokasi\n");
         System.out.println("Koordinat X: " +x_coord);
         System.out.println("Koordinat Y: " +y_coord);
         System.out.println("Deskripsi: " +deskripsiLokasi);
+    }*/
+    
+    public String toString(){
+        return null;
     }
 }

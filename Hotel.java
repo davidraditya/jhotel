@@ -3,7 +3,7 @@
  * Class Pesanan
  *
  * @author David Raditya K - 1506690372
- * @version 2018.03.10
+ * @version 2018.03.22
  */
 public class Hotel
 {
@@ -88,11 +88,15 @@ public class Hotel
     
     /*
      * Untuk mencetak data
-     */
+     *
     public void printData(){
         System.out.printf("\nHotel\n");
         System.out.println("Nama Hotel: " +nama);
         System.out.println("Lokasi: " +lokasi.getDeskripsi());
         System.out.println("Bintang: " +bintang);
+    }*/
+    
+    public String toString(){
+        return null;
     }
 }

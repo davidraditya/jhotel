@@ -3,7 +3,7 @@
  * Class Room
  *
  * @author David Raditya K - 1506690372
- * @version 2018.03.15
+ * @version 2018.03.22
  */
 public abstract class Room
 {
@@ -121,7 +121,7 @@ public abstract class Room
         this.pesan = pesan;
     }
     
-    public void printData(){
+    /*public void printData(){
         System.out.printf("\nRoom\n");
         System.out.println("Nama Hotel  : " +hotel.getNama());
         System.out.println("Nomor Kamar : " +nomor_kamar);
@@ -129,6 +129,10 @@ public abstract class Room
         System.out.println("Harga       : " +dailyTariff);
         System.out.println("Status Kamar: " +status_kamar);
         System.out.println("Tipe Kamar  : " +getTipeKamar());
+    }*/
+    
+    public String toString(){
+        return null;
     }
     
 }

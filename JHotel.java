@@ -9,7 +9,9 @@ public class JHotel
 {
     public static void main(String args[])
     {
-        System.out.println("Welcome to JHotel");
+        
+        
+        /*System.out.println("Welcome to JHotel");
         
         Lokasi lokasi = new Lokasi(20, 15, "DTE");
         Hotel hotel = new Hotel("GedungK", lokasi, 5);
@@ -48,7 +50,7 @@ public class JHotel
         
         if (kamardouble instanceof DoubleRoom){
             System.out.println("Benar Double Room");
-        } else  System.out.println("Salah, bukan Double Room");
+        } else  System.out.println("Salah, bukan Double Room");*/
        
         
     }

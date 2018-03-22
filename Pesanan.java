@@ -1,9 +1,9 @@
-
+import java.util.*;
 /**
  * Class Pesanan
  *
  * @author David Raditya K - 1506690372
- * @version 2018.03.15
+ * @version 2018.03.22
  */
 public class Pesanan
 {
@@ -14,6 +14,7 @@ public class Pesanan
     private boolean isDiproses;
     private boolean isSelesai;
     private Room kamar;
+    private Date tanggalPesan;
 
     /**
      * Constructor for objects of class Pesanan
@@ -95,6 +96,17 @@ public class Pesanan
     }
     
     /**
+     * Accessor for objects of class Pesanan
+     * untuk meminta keterangan tanggal memesan
+     * 
+     * @return tanggalPesan.
+     */
+    public Date getTanggalPesan()
+    {
+        return tanggalPesan;
+    }
+    
+    /**
      * Mutator for objects of class Pesanan
      * untuk memberi nilai biaya
      * 
@@ -160,10 +172,21 @@ public class Pesanan
         this.kamar = kamar;
     }
     
-    /*
-     * Untuk mencetak data
+    /**
+     * Mutator for objects of class Pesanan
+     * untuk memberi keterangan tanggal memesan
+     * 
+     * @param tanggalPesan.
      */
-    public void printData()
+    public void setTanggalPesan(Date tanggalPesan)
+    {
+        this.tanggalPesan = tanggalPesan;
+    }
+    
+     /*
+     * Untuk mencetak data
+     *
+    public String printData()
     {
         System.out.printf("\nPesanan\n");
         System.out.println("Nama Pelanggan         : " +pelanggan.getNama());
@@ -171,5 +194,9 @@ public class Pesanan
         System.out.println("Status layanan selesai : " +isSelesai);
         System.out.println("Jumlah Hari            : " +jumlahHari);
         System.out.println("Biaya                  : " +biaya);
+    }*/
+    
+    public String toString(){
+        return null;
     }
 }

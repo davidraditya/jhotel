@@ -1,6 +1,6 @@
 #BlueJ class context
 comment0.target=Room
-comment0.text=\r\n\ Class\ Room\r\n\r\n\ @author\ David\ Raditya\ K\ -\ 1506690372\r\n\ @version\ 2018.03.15\r\n
+comment0.text=\r\n\ Class\ Room\r\n\r\n\ @author\ David\ Raditya\ K\ -\ 1506690372\r\n\ @version\ 2018.03.22\r\n
 comment1.params=hotel\ nomor_kamar\ isAvailable\ status_kamar
 comment1.target=Room(Hotel,\ java.lang.String,\ boolean,\ StatusKamar)
 comment1.text=\r\n\ Constructor\ for\ objects\ of\ class\ Room\r\n
@@ -15,7 +15,8 @@ comment13.target=void\ setStatusKamar(StatusKamar)
 comment14.params=pesan
 comment14.target=void\ setPesanan(Pesanan)
 comment15.params=
-comment15.target=void\ printData()
+comment15.target=java.lang.String\ toString()
+comment15.text=public\ void\ printData(){\r\n\ \ \ \ \ \ \ \ System.out.printf("\\nRoom\\n");\r\n\ \ \ \ \ \ \ \ System.out.println("Nama\ Hotel\ \ \:\ "\ +hotel.getNama());\r\n\ \ \ \ \ \ \ \ System.out.println("Nomor\ Kamar\ \:\ "\ +nomor_kamar);\r\n\ \ \ \ \ \ \ \ System.out.println("Tersedia\ \ \ \ \:\ "\ +isAvailable);\r\n\ \ \ \ \ \ \ \ System.out.println("Harga\ \ \ \ \ \ \ \:\ "\ +dailyTariff);\r\n\ \ \ \ \ \ \ \ System.out.println("Status\ Kamar\:\ "\ +status_kamar);\r\n\ \ \ \ \ \ \ \ System.out.println("Tipe\ Kamar\ \ \:\ "\ +getTipeKamar());\r\n}
 comment2.params=
 comment2.target=Hotel\ getHotel()
 comment2.text=\r\n\ Accessor\ for\ objects\ of\ class\ Room\r\n\ untuk\ meminta\ keterangan\ hotel\r\n\ \r\n\ @return\ hotel.\r\n
