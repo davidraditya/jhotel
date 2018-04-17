@@ -8,6 +8,7 @@
 public class Hotel
 {
     // deklarasi variabel
+    private int id;
     private String nama;
     private Lokasi lokasi;
     private int bintang;
@@ -24,6 +25,16 @@ public class Hotel
         this.nama = nama;
         this.lokasi = lokasi;
         this.bintang = bintang;
+    }
+
+    /**
+     * Accessor for objects of class Hotel
+     * untuk meminta nilai id
+     *
+     * @return id.
+     */
+    public int getID(){
+        return id;
     }
 
     /**
@@ -55,12 +66,22 @@ public class Hotel
     public Lokasi getLokasi(){
         return lokasi;
     }
-    
+
+    /**
+     * Mutator for objects of class Hotel
+     * untuk memberi id
+     *
+     * @param id
+     */
+    public void setID(int id){
+        this.id = id;
+    }
+
     /**
      * Mutator for objects of class Hotel
      * untuk memberi nama
      * 
-     * @param nama.
+     * @param nama
      */
     public void setNama(String nama){
         this.nama = nama;
@@ -70,7 +91,7 @@ public class Hotel
      * Mutator for objects of class Hotel
      * untuk memberi lokasi
      * 
-     * @param lokasi.
+     * @param lokasi
      */
     public void setLokasi(Lokasi lokasi){
         this.lokasi = lokasi;
@@ -80,7 +101,7 @@ public class Hotel
      * Mutator for objects of class Hotel
      * untuk memberi nilai bintang
      * 
-     * @param bintang.
+     * @param bintang
      */
     public void setBintang(int bintang){
         this.bintang = bintang;

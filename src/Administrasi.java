@@ -8,68 +8,100 @@
 public class Administrasi
 {
     /**
-     * Constructor for objects of class Administrasi
-     */
-    public Administrasi()
-    {
-    }
-
-    /**
+     * Untuk memproses pemesanan kamar hotel.
      *
+     * @param pesan berisi objek Pesanan
+     * @param kamar berisi objek Room
      */
     public static void pesananDitugaskan(Pesanan pesan, Room kamar)
     {
         pesan.setStatusSelesai(false);
         pesan.setStatusDiproses(true);
         pesan.setRoom(kamar);
-        roomAmbilPesanan(pesan, kamar);
+        kamar.setStatusKamar(StatusKamar.BOOKED);
+        //roomAmbilPesanan(pesan, kamar);
     }
-    
+
+    /*
     public static void roomAmbilPesanan(Pesanan pesan, Room kamar)
     {
         kamar.setStatusKamar(StatusKamar.BOOKED);
-        kamar.setPesanan(pesan);
+        //kamar.setPesanan(pesan);
     }
-    
+    */
+
+    /*
     public static void roomLepasPesanan(Room kamar)
     {
         kamar.setStatusKamar(StatusKamar.VACANT);
-        kamar.setPesanan(null);
+        //kamar.setPesanan(null);
     }
-    
+    */
+
+    /**
+     * untuk melakukan pembatalan pesanan.
+     *
+     * @param kamar berisi objek Room
+     */
     public static void pesananDibatalkan(Room kamar)
     {
-        Pesanan pesan = kamar.getPesanan();
+        //Pesanan pesan = kamar.getPesanan();
+        Pesanan pesan = DatabasePesanan.getPesanan(kamar);
         pesan.setStatusSelesai(false);
         pesan.setStatusDiproses(false);
-        pesan.setRoom(null);
-        //kamar.setPesanan(pesan);
-        roomLepasPesanan(kamar);
+        pesan.setStatusAktif(false);
+        //kamar.setPesanan(null);
+        kamar.setStatusKamar(StatusKamar.VACANT);
+        //roomLepasPesanan(kamar);
     }
-    
+
+    /**
+     * untuk menandakan pesanan telah selesai.
+     *
+     * @param kamar berisi objek Room
+     */
     public static void pesananSelesai(Room kamar)
     {
-        Pesanan pesan = kamar.getPesanan();
+        //Pesanan pesan = kamar.getPesanan();
+        Pesanan pesan = DatabasePesanan.getPesanan(kamar);
         pesan.setStatusSelesai(true);
         pesan.setStatusDiproses(false);
         pesan.setStatusAktif(false);
-        kamar.setPesanan(null);
-        roomLepasPesanan(kamar); 
+        //kamar.setPesanan(null);
+        kamar.setStatusKamar(StatusKamar.VACANT);
+        //roomLepasPesanan(kamar);
     }
-    
+
+    /**
+     * untuk melakukan pembatalan pesanan.
+     *
+     * @param pesan berisi objek Pesanan
+     */
     public static void pesananDibatalkan(Pesanan pesan)
     {
-        roomLepasPesanan(pesan.getRoom());
+        //kamar.setStatusKamar(StatusKamar.VACANT);
+        pesan.getRoom().setStatusKamar(StatusKamar.VACANT);
+        //roomLepasPesanan(pesan.getRoom());
+
         pesan.setStatusSelesai(false);
         pesan.setStatusDiproses(false);
+        pesan.setStatusAktif(false);
         pesan.setRoom(null);
     }
-    
+
+    /**
+     * untuk menandakan pesanan telah selesai.
+     *
+     * @param pesan berisi objek Pesanan
+     */
     public static void pesananSelesai(Pesanan pesan)
     {
-        roomLepasPesanan(pesan.getRoom());
+        pesan.getRoom().setStatusKamar(StatusKamar.VACANT);
+        //roomLepasPesanan(pesan.getRoom());
+
         pesan.setStatusSelesai(true);
         pesan.setStatusDiproses(false);
+        pesan.setStatusAktif(false);
         pesan.setRoom(null);
     }
 }

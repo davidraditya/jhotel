@@ -1,38 +1,93 @@
-
+import java.util.ArrayList;
 /**
  * Class Pesanan
  *
  * @author David Raditya K - 1506690372
- * @version 2018.03.10
+ * @version 2018.04.12
  */
 public class DatabaseCustomer
 {
-    // instance variables - replace the example below with your own
-    private String[] list_customer;
+    /*
+     * Deklarasi variable
+     */
+    private static ArrayList<Customer> CUSTOMER_DATABASE = new ArrayList<Customer>();
+    private static int LAST_CUSTOMER_ID = 0;
 
     /**
-     * 
-     * @return false
+     * Metode untuk menambah Customer
+     *
+     * @return LAST_CUSTOMER_ID ID
+     *
      */
-    public boolean addCustomer(Customer baru)
-    {
-        return false;
+    public static int getLastCustomerId(){
+        return LAST_CUSTOMER_ID;
     }
 
     /**
-     * 
-     * @return false
+     * Metode untuk menambah Customer
+     *
+     * @param baru customer baru
+     *
      */
-    public boolean removeCustomer(int id)
+    public static boolean addCustomer(Customer baru)
     {
-        return false;
+        for (int i = 0; i < CUSTOMER_DATABASE.size(); i++) {
+            Customer tes = CUSTOMER_DATABASE.get(i);
+            if (tes.getID()==baru.getID()){
+                return false;
+            }
+        }
+        LAST_CUSTOMER_ID=baru.getID();
+        CUSTOMER_DATABASE.add(baru);
+        return true;
     }
-    
+
     /**
-     * 
-     * @return null
+     * Metode untuk menambah Customer
+     *
+     * @param id id
+     *
      */
-    public String[] getCustomerDatabase(){
+    public static Customer getCustomer(int id)
+    {
+        for (int i = 0; i < CUSTOMER_DATABASE.size(); i++) {
+            Customer tes = CUSTOMER_DATABASE.get(i);
+            if (tes.getID()==id){
+                return tes;
+            }
+        }
         return null;
     }
+
+    /**
+     * Metode untuk menghapus customer
+     *
+     * @param id id customer
+     *
+     */
+    public static boolean removeCustomer(int id)
+    {
+        for (int i = 0; i < CUSTOMER_DATABASE.size(); i++) {
+            Customer tes = CUSTOMER_DATABASE.get(i);
+            if (tes.getID()==id){
+                Pesanan pesan = DatabasePesanan.getPesananAktif(tes);
+                DatabasePesanan.removePesanan(pesan);
+                if(CUSTOMER_DATABASE.remove(tes))
+                {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    /**
+     * Metode untuk mengambil data di database
+     *
+     */
+    public static ArrayList<Customer> getCustomerDatabase()
+    {
+        return CUSTOMER_DATABASE;
+    }
+
 }

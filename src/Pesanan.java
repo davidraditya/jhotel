@@ -32,6 +32,7 @@ public class Pesanan
         biaya=kamar.getDailyTariff() * getJumlahHari();
         isAktif = true;
         tanggalPesan = new Date();
+        id = DatabasePesanan.getLastPesananID() + 1;
     }
 
     /**
