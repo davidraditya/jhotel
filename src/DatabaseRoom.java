@@ -28,17 +28,13 @@ public class DatabaseRoom
 
     public static boolean addRoom(Room baru)
     {
-        for(Room kamar : ROOM_DATABASE)
-        {
-            if(!kamar.getHotel().equals(baru.getHotel()) &&
-                    !kamar.getNomorKamar().equals(baru.getNomorKamar()))
-            {
-                ROOM_DATABASE.add(baru);
-                return true;
+        for(Room cari : ROOM_DATABASE){
+            if(cari.getHotel() == baru.getHotel() && cari.getNomorKamar() == baru.getNomorKamar()) {
+                return false;
             }
         }
-
-        return false;
+        ROOM_DATABASE.add(baru);
+        return true;
     }
 
     /**

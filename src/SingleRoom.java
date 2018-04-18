@@ -9,8 +9,8 @@ public class SingleRoom extends Room
 {
     private TipeKamar TIPE_KAMAR = TipeKamar.SINGLE;
     
-    public SingleRoom(Hotel hotel, String nomor_kamar, boolean isAvailable, StatusKamar status_kamar){
-        super(hotel, nomor_kamar, isAvailable, status_kamar);
+    public SingleRoom(Hotel hotel, String nomor_kamar){
+        super(hotel, nomor_kamar);
     }
     
     public TipeKamar getTipeKamar(){

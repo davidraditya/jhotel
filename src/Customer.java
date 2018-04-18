@@ -2,6 +2,8 @@ import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.text.*;
+import java.util.Date;
+
 /**
  * Class Customer
  *
@@ -15,17 +17,17 @@ public class Customer
     protected String nama;
     protected String email;
     protected Date dob;
+    SimpleDateFormat dmy = new SimpleDateFormat ("dd MMMMMMMMM yyyy");
     
     /**
      * Constructor for objects of class Customer
      * 
-     * @param id, nama.
+     * @param nama
      */
-    public Customer(int id, String nama, int tanggal, int bulan, int tahun)
-    {
-        this.id = id;
+    public Customer(String nama, int tanggal, int bulan, int tahun){
+        this.id = DatabaseCustomer.getLastCustomerId() + 1;
         this.nama = nama;
-        Date dob = new Date(tahun, bulan, tanggal);
+        this.dob = new GregorianCalendar(tahun, bulan-1, tanggal).getTime();
     }
 
     /**
@@ -33,9 +35,7 @@ public class Customer
      * 
      * @param id, nama.
      */
-    public Customer(int id, String nama, Date dob)
-    {
-        this.id = id;
+    public Customer(int id, String nama, Date dob){
         this.nama = nama;
         this.dob = dob;
     }
@@ -77,11 +77,7 @@ public class Customer
      * @return dob.
      */
     public Date getDOB(){
-        DateFormat formatter = new SimpleDateFormat("'DOB : 'dd MMMM yyyy");
-        String output = formatter.format(dob);
-        //System.out.print(output);
-        System.out.println(output);
-        
+
         return dob;
     }
     
@@ -141,21 +137,24 @@ public class Customer
         System.out.println("ID: " +id);
         System.out.println("Nama: " +nama);
     }*/
-    
-    public String toString(){
-        if(DatabasePesanan.getPesanan(this)!=null){
-            return "\nCustomer ID   : " + id +
-                   "\nName          : " + nama +
-                   "\nE-Mail        : " + email +
-                   "\nDate of Birth : " + dob +
-                   "\nBooking order is in progress";        
+
+    public String toString()
+    {
+        if(DatabasePesanan.getPesananAktif(this) != null){
+            return "\nCustomer\n"+
+                    "\nCustomer ID   : " +id+
+                    "\nName          : " +nama+
+                    "\nE-Mail        : " +email+
+                    "\nDate of Birth : " +getDOB()+
+                    "\nBooking order is in progress";
         }
-       
+
         else{
-            return "\nCustomer ID   : " + id +
-                   "\nName          : " + nama +
-                   "\nE-Mail        : " + email +
-                   "\nDate of Birth : " + dob;        
+            return "\nCustomer\n"+
+                    "\nCustomer ID   : " +id+
+                    "\nName          : " +nama+
+                    "\nE-Mail        : " +email+
+                    "\nDate of Birth : " +getDOB();
         }
     }
 }

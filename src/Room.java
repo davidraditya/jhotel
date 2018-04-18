@@ -17,14 +17,12 @@ public abstract class Room
      * Constructor for objects of class Room
      * @param hotel hotel yang ditempati.
      * @param nomor_kamar nomor kamar hotel.
-     * @param status_kamar status dari kamar hotel.
      */
-    public Room(Hotel hotel, String nomor_kamar, StatusKamar status_kamar)
+    public Room(Hotel hotel, String nomor_kamar)
     {
         // initialise instance variables
         this.hotel = hotel;
         this.nomor_kamar = nomor_kamar;
-        this.status_kamar = StatusKamar.VACANT;
     }
 
     /**
@@ -94,16 +92,16 @@ public abstract class Room
     
     public String toString(){
         if(DatabasePesanan.getPesanan(this) == null){
-            return  "\nNama hotel  : " + hotel.getNama() +
+            return  "\nNama hotel  : " + getHotel().getNama() +
                     "\nTipe kamar  : " + getTipeKamar() +
-                    "\nHarga       : " + dailyTariff +
-                    "\nStatus kamar: " + status_kamar;
+                    "\nHarga       : " + getDailyTariff() +
+                    "\nStatus kamar: " + getStatusKamar();
         }
         else{
-            return  "\nNama hotel  : " + hotel.getNama() +
-                    "\nTipe kamar  : " + getTipeKamar().toString() +
-                    "\nHarga       : " + dailyTariff +
-                    "\nStatus kamar: " + status_kamar +
+            return  "\nNama hotel  : " + getHotel().getNama() +
+                    "\nTipe kamar  : " + getTipeKamar() +
+                    "\nHarga       : " + getDailyTariff() +
+                    "\nStatus kamar: " + getStatusKamar() +
                     "\nPelanggan   : " + DatabasePesanan.getPesanan(this).getPelanggan().getNama();
         }
     }

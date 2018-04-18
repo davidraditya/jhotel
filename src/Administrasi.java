@@ -18,8 +18,8 @@ public class Administrasi
         pesan.setStatusSelesai(false);
         pesan.setStatusDiproses(true);
         pesan.setRoom(kamar);
+        //kamar.setStatusKamar(StatusKamar.BOOKED);
         kamar.setStatusKamar(StatusKamar.BOOKED);
-        //roomAmbilPesanan(pesan, kamar);
     }
 
     /*
@@ -46,10 +46,10 @@ public class Administrasi
     public static void pesananDibatalkan(Room kamar)
     {
         //Pesanan pesan = kamar.getPesanan();
-        Pesanan pesan = DatabasePesanan.getPesanan(kamar);
-        pesan.setStatusSelesai(false);
-        pesan.setStatusDiproses(false);
-        pesan.setStatusAktif(false);
+        //Pesanan pesan = DatabasePesanan.getPesanan(kamar);
+        //pesan.setStatusSelesai(false);
+        //pesan.setStatusDiproses(false);
+        //pesan.setStatusAktif(false);
         //kamar.setPesanan(null);
         kamar.setStatusKamar(StatusKamar.VACANT);
         //roomLepasPesanan(kamar);
@@ -68,8 +68,8 @@ public class Administrasi
         pesan.setStatusDiproses(false);
         pesan.setStatusAktif(false);
         //kamar.setPesanan(null);
-        kamar.setStatusKamar(StatusKamar.VACANT);
-        //roomLepasPesanan(kamar);
+        //kamar.setStatusKamar(StatusKamar.VACANT);
+        roomLepasPesanan(kamar);
     }
 
     /**
@@ -80,13 +80,17 @@ public class Administrasi
     public static void pesananDibatalkan(Pesanan pesan)
     {
         //kamar.setStatusKamar(StatusKamar.VACANT);
-        pesan.getRoom().setStatusKamar(StatusKamar.VACANT);
-        //roomLepasPesanan(pesan.getRoom());
+        //pesan.getRoom().setStatusKamar(StatusKamar.VACANT);
+        roomLepasPesanan(pesan.getRoom());
 
         pesan.setStatusSelesai(false);
         pesan.setStatusDiproses(false);
         pesan.setStatusAktif(false);
         pesan.setRoom(null);
+    }
+
+    public static void roomLepasPesanan(Room kamar){
+        kamar.setStatusKamar(StatusKamar.VACANT);
     }
 
     /**
@@ -96,12 +100,10 @@ public class Administrasi
      */
     public static void pesananSelesai(Pesanan pesan)
     {
-        pesan.getRoom().setStatusKamar(StatusKamar.VACANT);
-        //roomLepasPesanan(pesan.getRoom());
-
+        //pesan.getRoom().setStatusKamar(StatusKamar.VACANT);
+        roomLepasPesanan(pesan.getRoom());
         pesan.setStatusSelesai(true);
         pesan.setStatusDiproses(false);
-        pesan.setStatusAktif(false);
         pesan.setRoom(null);
     }
 }

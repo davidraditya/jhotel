@@ -9,8 +9,8 @@ public class PremiumRoom extends Room
     private double DISCOUNT = 0.3;
     private TipeKamar TIPE_KAMAR = TipeKamar.PREMIUM;
     
-    public PremiumRoom(Hotel hotel, String nomor_kamar, boolean isAvailable, StatusKamar status_kamar){
-        super(hotel, nomor_kamar, isAvailable, status_kamar);
+    public PremiumRoom(Hotel hotel, String nomor_kamar){
+        super(hotel, nomor_kamar);
     }
     
     public TipeKamar getTipeKamar(){
