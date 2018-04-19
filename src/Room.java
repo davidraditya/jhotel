@@ -23,6 +23,7 @@ public abstract class Room
         // initialise instance variables
         this.hotel = hotel;
         this.nomor_kamar = nomor_kamar;
+        status_kamar = StatusKamar.VACANT;
     }
 
     /**

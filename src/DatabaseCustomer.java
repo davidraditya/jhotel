@@ -29,12 +29,11 @@ public class DatabaseCustomer
      * @param baru customer baru
      *
      */
-    public static boolean addCustomer(Customer baru)
-    {
+    public static boolean addCustomer (Customer baru) throws PelangganSudahAdaException{
         for (int i = 0; i < CUSTOMER_DATABASE.size(); i++) {
             Customer tes = CUSTOMER_DATABASE.get(i);
-            if (tes.getID()==baru.getID()){
-                return false;
+            if (tes.getID()==baru.getID() || tes.getNama()==baru.getNama()){
+                throw new PelangganSudahAdaException(tes);
             }
         }
         LAST_CUSTOMER_ID=baru.getID();
@@ -62,23 +61,27 @@ public class DatabaseCustomer
     /**
      * Metode untuk menghapus customer
      *
-     * @param id id customer
+     * @param id customer
      *
      */
-    public static boolean removeCustomer(int id)
+    public static boolean removeCustomer(int id) throws PelangganTidakDitemukanException
     {
         for (int i = 0; i < CUSTOMER_DATABASE.size(); i++) {
-            Customer tes = CUSTOMER_DATABASE.get(i);
-            if (tes.getID()==id){
-                Pesanan pesan = DatabasePesanan.getPesananAktif(tes);
-                DatabasePesanan.removePesanan(pesan);
-                if(CUSTOMER_DATABASE.remove(tes))
+            Customer coba = CUSTOMER_DATABASE.get(i);
+            if (coba.getID()==id){
+                Pesanan pesan = DatabasePesanan.getPesananAktif(coba);
+                try {
+                    DatabasePesanan.removePesanan(coba);
+                } catch (PesananTidakDitemukanException test){
+                    System.out.println(test.getPesan());
+                }
+                if(CUSTOMER_DATABASE.remove(coba))
                 {
                     return true;
                 }
             }
         }
-        return false;
+        throw new PelangganTidakDitemukanException(id);
     }
 
     /**

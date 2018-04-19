@@ -8,7 +8,7 @@ import java.util.Date;
  * Class Customer
  *
  * @author David Raditya K - 1506690372
- * @version 2018.03.22
+ * @version 2018.04.19
  */
 public class Customer
 {
@@ -24,10 +24,11 @@ public class Customer
      * 
      * @param nama
      */
-    public Customer(String nama, int tanggal, int bulan, int tahun){
+    public Customer(String nama, int tanggal, int bulan, int tahun, String email){
         this.id = DatabaseCustomer.getLastCustomerId() + 1;
         this.nama = nama;
         this.dob = new GregorianCalendar(tahun, bulan-1, tanggal).getTime();
+        this.email = email;
     }
 
     /**
@@ -35,9 +36,10 @@ public class Customer
      * 
      * @param id, nama.
      */
-    public Customer(int id, String nama, Date dob){
+    public Customer(int id, String nama, Date dob, String email){
         this.nama = nama;
         this.dob = dob;
+        this.email = email;
     }
     
     /**

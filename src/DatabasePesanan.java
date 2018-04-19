@@ -27,12 +27,11 @@ public class DatabasePesanan
      * @param baru pesanan baru
      *
      */
-    public static boolean addPesanan(Pesanan baru)
-    {
+    public static boolean addPesanan(Pesanan baru) throws PesananSudahAdaException{
         for (int i = 0; i < PESANAN_DATABASE.size(); i++) {
             Pesanan tes = PESANAN_DATABASE.get(i);
             if (tes.getStatusAktif()==true&&tes.getID()==baru.getID()){
-                return false;
+                throw new PesananSudahAdaException(baru);
             }
         }
         LAST_PESANAN_ID=baru.getID();
@@ -46,30 +45,29 @@ public class DatabasePesanan
      * @param pesan pesanan
      *
      */
-    public static boolean removePesanan(Pesanan pesan)
-    {
+    public static boolean removePesanan(Customer pesan) throws PesananTidakDitemukanException{
         for (int i = 0; i < PESANAN_DATABASE.size(); i++) {
-            Pesanan tes = PESANAN_DATABASE.get(i);
-            if (tes.equals(pesan)){
-                if(tes.getRoom() != null)
+            Pesanan coba = PESANAN_DATABASE.get(i);
+            if (coba.getPelanggan().equals(pesan)){
+                if(coba.getRoom() != null)
                 {
-                    Administrasi.pesananDibatalkan(tes);
+                    Administrasi.pesananDibatalkan(coba);
                 }
                 else
                 {
-                    if(tes.getStatusAktif())
+                    if(coba.getStatusAktif())
                     {
-                        tes.setStatusAktif(false);
+                        coba.setStatusAktif(false);
                     }
                 }
 
-                if(PESANAN_DATABASE.remove(tes))
+                if(PESANAN_DATABASE.remove(coba))
                 {
                     return true;
                 }
             }
         }
-        return false;
+        throw new PesananTidakDitemukanException(pesan);
     }
 
     /**
