@@ -1,0 +1,12 @@
+#BlueJ class context
+comment0.target=DoubleRoom
+comment0.text=\r\n\ Class\ DoubleRoom\r\n\r\n\ @author\ David\ Raditya\ K\ -\ 1506690372\r\n\ @version\ 2018.03.15\r\n
+comment1.params=hotel\ nomor_kamar\ isAvailable\ status_kamar
+comment1.target=DoubleRoom(Hotel,\ java.lang.String,\ boolean,\ StatusKamar)
+comment2.params=
+comment2.target=Customer\ getCustomer2()
+comment3.params=
+comment3.target=TipeKamar\ getTipeKamar()
+comment4.params=customer2
+comment4.target=void\ setCustomer(Customer)
+numComments=5
