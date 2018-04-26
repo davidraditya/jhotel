@@ -15,11 +15,20 @@ public class Administrasi
      */
     public static void pesananDitugaskan(Pesanan pesan, Room kamar)
     {
-        pesan.setStatusSelesai(false);
-        pesan.setStatusDiproses(true);
-        pesan.setRoom(kamar);
+        if (kamar.getStatusKamar()==StatusKamar.VACANT){
+            pesan.setStatusSelesai(false);
+            pesan.setStatusDiproses(true);
+            pesan.setRoom(kamar);
+            kamar.setStatusKamar(StatusKamar.BOOKED);
+
+        }
+
+        else{
+            pesan.setStatusAktif(false);
+        }
+
         //kamar.setStatusKamar(StatusKamar.BOOKED);
-        kamar.setStatusKamar(StatusKamar.BOOKED);
+        //kamar.setStatusKamar(StatusKamar.BOOKED);
     }
 
     /*
@@ -63,7 +72,7 @@ public class Administrasi
     public static void pesananSelesai(Room kamar)
     {
         //Pesanan pesan = kamar.getPesanan();
-        Pesanan pesan = DatabasePesanan.getPesanan(kamar);
+        Pesanan pesan = DatabasePesanan.getPesananAktif(kamar);
         pesan.setStatusSelesai(true);
         pesan.setStatusDiproses(false);
         pesan.setStatusAktif(false);

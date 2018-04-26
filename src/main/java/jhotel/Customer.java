@@ -18,6 +18,7 @@ public class Customer
     protected String nama;
     protected String email;
     protected Date dob;
+    protected String password;
     SimpleDateFormat dmy = new SimpleDateFormat ("dd MMMMMMMMM yyyy");
     
     /**
@@ -25,11 +26,12 @@ public class Customer
      * 
      * @param nama
      */
-    public Customer(String nama, int tanggal, int bulan, int tahun, String email){
+    public Customer(String nama, int tanggal, int bulan, int tahun, String email, String password){
         this.id = DatabaseCustomer.getLastCustomerId() + 1;
         this.nama = nama;
         this.dob = new GregorianCalendar(tahun, bulan-1, tanggal).getTime();
         this.email = email;
+        this.password = password;
     }
 
     /**
@@ -37,7 +39,7 @@ public class Customer
      * 
      * @param id, nama.
      */
-    public Customer(int id, String nama, Date dob, String email){
+    public Customer(int id, String nama, Date dob, String email, String password){
         this.nama = nama;
         this.dob = dob;
         this.email = email;
@@ -83,7 +85,17 @@ public class Customer
 
         return dob;
     }
-    
+
+    /**
+     * Accessor for objects of class Customer
+     * untuk meminta password
+     *
+     * @return password.
+     */
+    public String getPassword(){
+        return password;
+    }
+
     /**
      * Mutator for objects of class Customer
      * untuk memberi id
@@ -121,7 +133,7 @@ public class Customer
             this.email = email;
         }
     }
-    
+
     /**
      * Mutator for objects of class Customer
      * untuk memberi tanggal lahir
@@ -131,7 +143,17 @@ public class Customer
     public void setDOB(Date dob){
         this.dob = dob;
     }
-    
+
+    /**
+     * Mutator for objects of class Customer
+     * untuk memberi password
+     *
+     * @return nama.
+     */
+    public void setPassword(String password){
+        this.password = password;
+    }
+
     /*
      * Untuk mencetak data
      *

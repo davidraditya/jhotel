@@ -33,7 +33,7 @@ public class DatabaseCustomer
     public static boolean addCustomer (Customer baru) throws PelangganSudahAdaException{
         for (int i = 0; i < CUSTOMER_DATABASE.size(); i++) {
             Customer tes = CUSTOMER_DATABASE.get(i);
-            if (tes.getID()==baru.getID() || tes.getNama()==baru.getNama()){
+            if (tes.getID()==baru.getID() || tes.getNama().equals(baru.getNama())){
                 throw new PelangganSudahAdaException(tes);
             }
         }
@@ -53,6 +53,16 @@ public class DatabaseCustomer
         for (int i = 0; i < CUSTOMER_DATABASE.size(); i++) {
             Customer tes = CUSTOMER_DATABASE.get(i);
             if (tes.getID()==id){
+                return tes;
+            }
+        }
+        return null;
+    }
+
+    public static Customer getCustomerLogin(String email, String password){
+        for (int i = 0; i < CUSTOMER_DATABASE.size(); i++) {
+            Customer tes = CUSTOMER_DATABASE.get(i);
+            if (tes.getEmail().equals(email) || tes.getPassword().equals(password)){
                 return tes;
             }
         }

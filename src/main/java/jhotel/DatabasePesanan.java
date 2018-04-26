@@ -88,11 +88,11 @@ public class DatabasePesanan
         return null;
     }
 
-    public static Pesanan getPesanan(Room kamar)
+    public static Pesanan getPesananAktif(Room kamar)
     {
         for (int i = 0; i < PESANAN_DATABASE.size(); i++) {
             Pesanan tes = PESANAN_DATABASE.get(i);
-            if (tes.getRoom().equals(kamar)){
+            if (tes.getRoom().equals(kamar)&&tes.getStatusAktif()==true){
                 return tes;
             }
         }

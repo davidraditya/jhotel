@@ -20,6 +20,26 @@ public class JHotel
      */
     public static void main (String[] args){
         SpringApplication.run(JHotel.class, args);
+        Lokasi loc1 = new Lokasi(11,11,"depan");
+        Lokasi loc2 = new Lokasi(12,12,"samping");
+
+        Hotel hotel1 = new Hotel ("Aston", loc1, 5);
+        Hotel hotel2 = new Hotel ("Bolton", loc2, 4);
+
+        Room room1 = new SingleRoom(hotel1, "A1");
+        Room room2 = new DoubleRoom(hotel1, "A2");
+        Room room3 = new PremiumRoom(hotel2, "A3");
+
+        try{
+            DatabaseRoom.addRoom(room1);
+            DatabaseRoom.addRoom(room2);
+            DatabaseRoom.addRoom(room3);
+        }
+
+        catch (RoomSudahAdaException yo){
+            System.out.println(yo.getPesan());
+        }
+
         /*System.out.println("Exception have been implemented");
         Customer customer1 = new Customer("Andrew", 01, 01, 2001, "andrew@ui.ac.id");
         Customer customer2 = new Customer("Bianca", 02, 02, 2002, "bianca@ui.ac.id");
