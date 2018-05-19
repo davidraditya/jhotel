@@ -1,168 +1,185 @@
 package jhotel;
-import java.util.*;
+
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import java.text.*;
 import java.util.Date;
+import java.util.GregorianCalendar;
 
 /**
- * Class Customer
+ * Class Customer untuk membuat model Customer
  *
  * @author David Raditya K - 1506690372
- * @version 2018.04.19
+ * @version 2018.05.16
  */
 public class Customer
 {
-    // deklarasi variabel
-    protected int id;
-    protected String nama;
-    protected String email;
-    protected Date dob;
-    protected String password;
-    SimpleDateFormat dmy = new SimpleDateFormat ("dd MMMMMMMMM yyyy");
-    
+    private int id;
+    private String nama;
+    private String email;
+    private Date dob;
+    private String password;
+    private static final Pattern VALID_EMAIL_ADDRESS_REGEX =
+            Pattern.compile("^[_A-Za-z0-9-+]+(\\.[_A-Za-z0-9-]+)*@"
+                    +"[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$", Pattern.CASE_INSENSITIVE);
+
     /**
-     * Constructor for objects of class Customer
-     * 
-     * @param nama
+     * Overloading Constructor untuk object dari class Customer.
+     *
+     * @param nama berisi nama Customer
+     * @param tanggal berisi tanggal
+     * @param bulan berisi bulan
+     * @param tahun berisi tahun
      */
     public Customer(String nama, int tanggal, int bulan, int tahun, String email, String password){
-        this.id = DatabaseCustomer.getLastCustomerId() + 1;
+        id = DatabaseCustomer.getLastCustomerID()+1;
         this.nama = nama;
-        this.dob = new GregorianCalendar(tahun, bulan-1, tanggal).getTime();
+        this.dob = new GregorianCalendar(tahun,bulan-1,tanggal).getTime();
         this.email = email;
         this.password = password;
     }
 
     /**
-     * Constructor for objects of class Customer
-     * 
-     * @param id, nama.
+     * Overloading Constructor untuk object dari class Customer.
+     *
+     * @param nama berisi nama customer.
+     * @param dob berisi objek Date.
      */
-    public Customer(int id, String nama, Date dob, String email, String password){
+    public Customer(String nama, Date dob, String email, String password){
+        id = DatabaseCustomer.getLastCustomerID()+1;
         this.nama = nama;
         this.dob = dob;
         this.email = email;
+        this.password = password;
     }
-    
+
     /**
-     * Accessor for objects of class Customer
-     * untuk meminta id
-     * 
-     * @return id.
+     * Accessor untuk object dari class Customer
+     * untuk mendapatkan nilai ID.
+     *
+     * @return id
      */
     public int getID(){
         return id;
     }
-    
+
     /**
-     * Accessor for objects of class Customer
-     * untuk meminta nama
-     * 
-     * @return nama.
+     * Accessor untuk object dari class Customer
+     * untuk mendapatkan nilai nama.
+     *
+     * @return nama
      */
     public String getNama(){
         return nama;
     }
-    
+
     /**
-     * Accessor for objects of class Customer
-     * untuk meminta email
-     * 
-     * @return email.
+     * Accessor untuk object dari class Customer
+     * untuk mendapatikan email.
+     *
+     * @return email
      */
     public String getEmail(){
         return email;
     }
-    
+
     /**
-     * Accessor for objects of class Customer
-     * untuk meminta tanggal lahir
-     * 
-     * @return dob.
+     * Accessor untuk object dari class Customer
+     * untuk mendapatkan nilai tanggal bertipe Date
+     *
+     * @return dob
      */
     public Date getDOB(){
-
         return dob;
     }
 
     /**
-     * Accessor for objects of class Customer
-     * untuk meminta password
+     * Accessor untuk object dari class Customer
+     * untuk mendapatkan password
      *
-     * @return password.
+     * @return password
      */
     public String getPassword(){
         return password;
     }
 
     /**
-     * Mutator for objects of class Customer
-     * untuk memberi id
-     * 
-     * @return id.
+     * Mutator untuk object dari class Customer
+     * untuk menentukan nilai id.
+     *
+     * @param id berisi id.
      */
-    public void setID(int id){
+    public void setID(int id)
+    {
         this.id = id;
     }
-    
+
     /**
-     * Mutator for objects of class Customer
-     * untuk memberi nama
-     * 
-     * @return nama.
+     * Mutator untuk object dari class Customer
+     * untuk menentukan nilai id.
+     *
+     * @param nama berisi nama.
      */
-    public void setNama(String nama){
+    public void setNama(String nama)
+    {
         this.nama = nama;
     }
-    
+
     /**
-     * Mutator for objects of class Customer
-     * untuk memberi email
-     * 
-     * @return email.
+     * Mutator untuk object dari class Customer
+     * untuk menentukan nilai email.
+     *
+     * @param email
      */
     public void setEmail(String email){
-        String pattern = 
-            "^[_&*_~A-Za-z0-9-\\+]+(\\.[_&*_~A-Za-z0-9-]+)*@[A-Za-z0-9][A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
-        
-        Pattern r = Pattern.compile(pattern);
-        Matcher m = r.matcher(email);
-        
-        if (m.matches()){
+        if(validate(email)){
             this.email = email;
+            System.out.println("Email: "+email+" valid");
+        }
+        else{
+            this.email = email;
+            System.out.println("Email: "+email+" tidak valid");
         }
     }
 
     /**
-     * Mutator for objects of class Customer
-     * untuk memberi tanggal lahir
-     * 
-     * @return dob.
+     * Mutator untuk object dari class Customer
+     * untuk validasi pattern email.
+     *
+     * @param emailStr
+     * berisi email yang ingin divaildasi.
+     *
+     * @return mathcer.find()
+     */
+    public static boolean validate(String emailStr){
+        Matcher matcher = VALID_EMAIL_ADDRESS_REGEX.matcher(emailStr);
+        return matcher.find();
+    }
+
+    /**
+     * Mutator untuk object dari class Customer
+     * untuk menentukan nilai tanggal
+     *
+     * @param dob
+     * objek Date
      */
     public void setDOB(Date dob){
         this.dob = dob;
     }
 
     /**
-     * Mutator for objects of class Customer
-     * untuk memberi password
+     * Mutator untuk object dari class Customer
+     * untuk menentukan password user
      *
-     * @return nama.
+     * @param password
      */
-    public void setPassword(String password){
+    public void setPassword(String password) {
         this.password = password;
     }
 
-    /*
-     * Untuk mencetak data
+    /**
+     * untuk mencetak String pada objek Customer
      *
-    public void printData(){
-        System.out.printf("\nCustomer\n");
-        System.out.println("ID: " +id);
-        System.out.println("Nama: " +nama);
-    }*/
-
+     */
     public String toString()
     {
         if(DatabasePesanan.getPesananAktif(this) != null){

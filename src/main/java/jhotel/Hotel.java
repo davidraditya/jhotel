@@ -3,124 +3,124 @@ package jhotel;
  * Class Pesanan
  *
  * @author David Raditya K - 1506690372
- * @version 2018.03.22
+ * @version 2018.05.16
  */
 public class Hotel
 {
-    // deklarasi variabel
     private int id;
     private String nama;
     private Lokasi lokasi;
     private int bintang;
-    
+
+    public Hotel()
+    {
+        //
+    }
 
     /**
-     * Constructor for objects of class Hotel
-     * 
-     * @param nama, lokasi, bintang.
+     * Constructor for objects of class Hotel.
+     *
+     * @param nama
+     * @param lokasi
+     * @param bintang
      */
     public Hotel(String nama, Lokasi lokasi, int bintang)
     {
-        //instance variable
         this.nama = nama;
         this.lokasi = lokasi;
         this.bintang = bintang;
-        this.id = DatabaseHotel.getLastHotelId()+1;
+        id = DatabaseHotel.getLastHotelID()+1;
     }
 
     /**
      * Accessor for objects of class Hotel
-     * untuk meminta nilai id
+     * untuk mendapatkan nilai id
      *
-     * @return id.
+     * @return id
      */
-    public int getID(){
+    public int getID() {
         return id;
     }
 
     /**
      * Accessor for objects of class Hotel
-     * untuk meminta nilai bintang
-     * 
-     * @return bintang.
+     * untuk mendapatkan nilai bintang.
+     *
+     * @return bintang
      */
-    public int getBintang(){
+    public int getBintang()
+    {
         return bintang;
     }
-    
+
     /**
      * Accessor for objects of class Hotel
-     * untuk meminta nama
-     * 
-     * @return nama.
+     * untuk mendapatkan nilai nama.
+     *
+     * @return nama
      */
-    public String getNama(){
+    public String getNama()
+    {
         return nama;
     }
-    
+
     /**
      * Accessor for objects of class Hotel
-     * untuk meminta lokasi
-     * 
-     * @return lokasi.
+     * untuk mendapatkan nilai lokasi.
+     *
+     * @return lokasi
      */
-    public Lokasi getLokasi(){
+    public Lokasi getLokasi()
+    {
         return lokasi;
     }
 
     /**
-     * Mutator for objects of class Hotel
-     * untuk memberi id
      *
-     * @param id
+     * @param id berisi id
      */
-    public void setID(int id){
+    public void setId(int id) {
         this.id = id;
     }
 
     /**
      * Mutator for objects of class Hotel
-     * untuk memberi nama
-     * 
+     * untuk menentukan nilai nama.
+     *
      * @param nama
      */
-    public void setNama(String nama){
+    public void setNama(String nama)
+    {
         this.nama = nama;
     }
-    
+
     /**
      * Mutator for objects of class Hotel
-     * untuk memberi lokasi
-     * 
+     * untuk menentukan nilai lokasi.
+     *
      * @param lokasi
      */
-    public void setLokasi(Lokasi lokasi){
+    public void setLokasi(Lokasi lokasi)
+    {
         this.lokasi = lokasi;
     }
-    
+
     /**
      * Mutator for objects of class Hotel
-     * untuk memberi nilai bintang
-     * 
+     * untuk menentukan nilai bintang.
+     *
      * @param bintang
      */
-    public void setBintang(int bintang){
+    public void setBintang(int bintang)
+    {
         this.bintang = bintang;
     }
-    
-    /*
-     * Untuk mencetak data
-     *
-    public void printData(){
-        System.out.printf("\nHotel\n");
-        System.out.println("Nama Hotel: " +nama);
-        System.out.println("Lokasi: " +lokasi.getDeskripsi());
-        System.out.println("Bintang: " +bintang);
-    }*/
-    
-    public String toString(){
-        return  "\nNama Hotel: "+nama+
-                "\nLokasi Hotel:"+lokasi.getDeskripsi()+
-                "\nBintang Hotel: "+bintang;
+
+    public String toString()
+    {
+        return "\nHotel\n"+
+                "\nNama Hotel    : "+nama+
+                "\nLokasi        : "+lokasi.getDeskripsi()+
+                "\nBintang       : "+bintang;
     }
 }

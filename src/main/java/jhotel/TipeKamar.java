@@ -14,25 +14,27 @@ public enum TipeKamar
     PREMIUM("Premium");
     
     //mendeklarasi variabel
-    private String tipe;
+    private String deskripsi;
     /**
      * Constructor for TipeKamar
      * 
-     * @param tipe tipe kamar
+     * @param deskripsi tipe kamar
      * 
      */
-    TipeKamar(String tipe){
-        this.tipe=tipe;
+    TipeKamar(String deskripsi)
+    {
+        this.deskripsi = deskripsi;
     }
     
     /**
      * pengembalian nilai enum yang dipanggil
      * 
-     * @return tipe tipe kamar
+     * @return deskripsi tipe kamar
      * 
      */
-    public String toString(){
-        return tipe;
+    public String toString()
+    {
+        return deskripsi;
     }
     
 }

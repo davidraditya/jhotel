@@ -2,15 +2,15 @@ package jhotel;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import java.util.*;
+import java.text.*;
 @SpringBootApplication
 
 /**
+ * Class ini digunakan untuk program utama JHotel
  *
  * @author David Raditya
- * @version 2018.04.12
+ * @version 2018.05.16
  */
-// Class ini digunakan untuk program utama JHotel
-
 public class JHotel
 {
     /**
@@ -18,26 +18,36 @@ public class JHotel
      * 
      * @param args argumen
      */
-    public static void main (String[] args){
+    public static void main (String args[]){
+
         SpringApplication.run(JHotel.class, args);
-        Lokasi loc1 = new Lokasi(11,11,"depan");
-        Lokasi loc2 = new Lokasi(12,12,"samping");
-
-        Hotel hotel1 = new Hotel ("Aston", loc1, 5);
-        Hotel hotel2 = new Hotel ("Bolton", loc2, 4);
-
-        Room room1 = new SingleRoom(hotel1, "A1");
-        Room room2 = new DoubleRoom(hotel1, "A2");
-        Room room3 = new PremiumRoom(hotel2, "A3");
 
         try{
-            DatabaseRoom.addRoom(room1);
-            DatabaseRoom.addRoom(room2);
-            DatabaseRoom.addRoom(room3);
+            DatabaseHotel.addHotel(new Hotel("Aston", new Lokasi(1, 1, "Kuningan"), 5));
+            /*DatabaseHotel.addHotel(new Hotel("Bolton", new Lokasi(2, 2, "Sudirman"), 4));
+            DatabaseHotel.addHotel(new Hotel("Carlton", new Lokasi(3, 3, "Thamrin"), 3));*/
+
+        }
+        catch(HotelSudahAdaException e)
+        {
+            e.getPesan();
         }
 
-        catch (RoomSudahAdaException yo){
-            System.out.println(yo.getPesan());
+        try
+        {
+            DatabaseRoom.addRoom(new SingleRoom(DatabaseHotel.getHotel(1), "A1"));
+            DatabaseRoom.addRoom(new DoubleRoom(DatabaseHotel.getHotel(1), "A2"));
+            DatabaseRoom.addRoom(new PremiumRoom(DatabaseHotel.getHotel(1), "A3"));
+            /*DatabaseRoom.addRoom(new SingleRoom(DatabaseHotel.getHotel(2), "B1"));
+            DatabaseRoom.addRoom(new DoubleRoom(DatabaseHotel.getHotel(2), "B2"));
+            DatabaseRoom.addRoom(new PremiumRoom(DatabaseHotel.getHotel(2), "B3"));
+            DatabaseRoom.addRoom(new SingleRoom(DatabaseHotel.getHotel(3), "C1"));
+            DatabaseRoom.addRoom(new DoubleRoom(DatabaseHotel.getHotel(3), "C2"));
+            DatabaseRoom.addRoom(new PremiumRoom(DatabaseHotel.getHotel(3), "C3"));*/
+        }
+        catch(RoomSudahAdaException e)
+        {
+            e.getPesan();
         }
 
         /*System.out.println("Exception have been implemented");

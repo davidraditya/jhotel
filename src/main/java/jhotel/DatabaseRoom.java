@@ -9,7 +9,7 @@ import java.util.ArrayList;
  */
 public class DatabaseRoom
 {
-    private static ArrayList<Room> ROOM_DATABASE = new ArrayList<Room>();
+    private static ArrayList<Room> ROOM_DATABASE = new ArrayList<>();
 
     /**
      * Method yang digunakan untuk mengembalikan database kamar.
@@ -27,10 +27,12 @@ public class DatabaseRoom
      * @return boolean mengembalikan apakah penambahan berhasil atau tidak.
      */
 
-    public static boolean addRoom(Room baru) throws RoomSudahAdaException{
-        for(Room cari : ROOM_DATABASE){
-            if(cari.getHotel() == baru.getHotel() && cari.getNomorKamar() == baru.getNomorKamar()) {
+    public static boolean addRoom(Room baru) throws RoomSudahAdaException
+    {
+        for(Room kamar : ROOM_DATABASE){
+            if(kamar.getHotel().equals(baru.getHotel()) && kamar.getNomorKamar().equals(baru.getNomorKamar())){
                 throw new RoomSudahAdaException(baru);
+                //return false;
             }
         }
         ROOM_DATABASE.add(baru);
@@ -39,79 +41,74 @@ public class DatabaseRoom
 
     /**
      * Method yang digunakan untuk mencari kamar dari database.
-     * @param hotel, nomor_kamar input customer yang akan dimasukkan kedalam database
-     * @return Room mengembalikan kamar.
+     * @param hotel
+     * @param nomor_kamar input customer yang akan dimasukkan kedalam database
+     * @return kamar
      */
 
     public static Room getRoom(Hotel hotel, String nomor_kamar)
     {
-        for(Room kamar : ROOM_DATABASE)
-        {
-            if(kamar.getHotel().equals(hotel) &&
-                    kamar.getNomorKamar().equals(nomor_kamar))
-            {
+        for(Room kamar : ROOM_DATABASE){
+            if(kamar.getHotel().equals(hotel) && kamar.getNomorKamar().equals(nomor_kamar)){
                 return kamar;
             }
         }
-
         return null;
     }
 
     /**
-     * Method yang digunakan untuk mencari kamar dari database berdasarkan hotel.
-     * @param hotel, nomor_kamar input customer yang akan dimasukkan kedalam database
-     * @return Room mengembalikan kamar.
+     * Method yang digunakan untuk mengambil ArrayList room yang berasal dari hotel
+     *
+     * @param hotel berisi objek Hotel
+     * @return tempRoom
      */
 
     public static ArrayList<Room> getRoomsFromHotel(Hotel hotel)
     {
-        ArrayList<Room> tempRoom = new ArrayList<Room>();
+        ArrayList<Room> tempRoom = new ArrayList<>();
 
-        for(Room kamar : ROOM_DATABASE)
-        {
-            if(kamar.getHotel().equals(hotel))
-            {
+        for(Room kamar : ROOM_DATABASE){
+            if(kamar.getHotel().equals(hotel)){
                 tempRoom.add(kamar);
             }
         }
-
         return tempRoom;
     }
 
     /**
      * Method yang digunakan untuk mencari kamar kosong dari database.
-     * @return ArrayList<Room> mengembalikan kamar.
+     *
+     * @return tempRoom
      */
 
     public static ArrayList<Room> getVacantRooms()
     {
-        ArrayList<Room> tempRoom = new ArrayList<Room>();
+        ArrayList<Room> tempRoom = new ArrayList<>();
 
-        for(Room kamar : ROOM_DATABASE)
-        {
-            if(kamar.getStatusKamar().equals(StatusKamar.VACANT))
-            {
+        for(Room kamar : ROOM_DATABASE){
+            if(kamar.getStatusKamar().equals(StatusKamar.VACANT)){
                 tempRoom.add(kamar);
             }
         }
-
-        return tempRoom;    }
+        return tempRoom;
+    }
 
     /**
      * Method yang digunakan untuk menghapus kamar dari dalam database.
-     * @param hotel, nomor_kamar input nomor kamar yang akan dihapus dari database
-     * @return boolean mengembalikan apakah penghapusan berhasil atau tidak.
+     * @param hotel
+     * @param nomor_kamar
+     * input nomor kamar yang akan dihapus dari database
+     *
+     * @return true
      */
 
-    public static boolean removeRoom(Hotel hotel, String nomor_kamar) throws RoomTidakDitemukanException{
+    public static boolean removeRoom(Hotel hotel, String nomor_kamar) throws RoomTidakDitemukanException
+    {
         for(Room kamar : ROOM_DATABASE)
         {
-            if(kamar.getHotel().equals(hotel) &&
-                    kamar.getNomorKamar().equals(nomor_kamar))
-            {
+            if(kamar.getHotel().equals(hotel) && kamar.getNomorKamar().equals(nomor_kamar)){
                 Administrasi.pesananDibatalkan(kamar);
-                if(ROOM_DATABASE.remove(kamar))
-                {
+                if(ROOM_DATABASE.remove(kamar)){
                     return true;
                 }
             }

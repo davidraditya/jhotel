@@ -5,7 +5,7 @@ import java.text.*;
  * Class Pesanan
  *
  * @author David Raditya K - 1506690372
- * @version 2018.04.12
+ * @version 2018.05.16
  */
 public class Pesanan
 {
@@ -26,14 +26,14 @@ public class Pesanan
      * @param jumlahHari berapa yang harus dibayar
      * @param pelanggan data pelanggan
      */
-    public Pesanan(double jumlahHari, Customer pelanggan)
+    public  Pesanan(double jumlahHari, Customer pelanggan)
     {
-        this.jumlahHari=jumlahHari;//instance variable
-        this.pelanggan=pelanggan;//instance variable
-        //biaya=kamar.getDailyTariff() * getJumlahHari();
+        this.jumlahHari = jumlahHari;
+        this.pelanggan = pelanggan;
+        //biaya = kamar.getDailyTariff()*jumlahHari;
+        id = DatabasePesanan.getLastPesananID()+1;
         isAktif = true;
         tanggalPesan = new Date();
-        id = DatabasePesanan.getLastPesananID() + 1;
     }
 
     /**
@@ -132,10 +132,9 @@ public class Pesanan
      */
     public Date getTanggalPesan()
     {
-        DateFormat formatter = new SimpleDateFormat("'DOB 'dd MMMM yyyy");
-        String output = formatter.format(tanggalPesan);
-        //System.out.print(output);
-        System.out.println(output);
+        DateFormat df = new SimpleDateFormat("'DOB : 'dd MMMM yyyy");
+        String hasil = df.format(tanggalPesan);
+        System.out.println(hasil);
         return tanggalPesan;
     }
 
@@ -157,7 +156,7 @@ public class Pesanan
      */
     public void setBiaya()
     {
-        biaya = kamar.getDailyTariff() * jumlahHari;
+        biaya = kamar.getDailyTariff()*jumlahHari;
     }
     
     /**
@@ -190,7 +189,7 @@ public class Pesanan
      */
     public void setStatusAktif(boolean aktif)
     {
-        isDiproses = aktif;
+        isAktif = aktif;
     }
 
     /**
@@ -238,27 +237,35 @@ public class Pesanan
     }
 
 
-    public String toString(){
+    public String toString()
+    {
         String final_status = "KOSONG";
-        if(isDiproses == true && isSelesai == false) final_status = "DIPROSES";
-        else if(isDiproses == false && isSelesai == false) final_status = "KOSONG";
-        else if(isDiproses == false && isSelesai == true) final_status = "SELESAI";
+
+        if (isDiproses && !isSelesai){
+            final_status = "DIPROSES";
+        }
+        else if (!isDiproses && !isSelesai){
+            final_status = "KOSONG";
+        }
+        else if (!isDiproses && isSelesai){
+            final_status = "SELESAI";
+        }
 
         if (kamar != null) {
-            return "\n Pesanan" +
-                    "\n pelanggan=" + pelanggan.getNama() +
-                    "\n jumlah hari =" + jumlahHari +
-                    "\n hotel=" + kamar.getHotel().getNama() +
-                    "\n kamar=" + kamar.getNomorKamar() +
-                    "\n tipeKamar=" + kamar.getTipeKamar() +
-                    "\n status='" + final_status;
+            return  "\nPesanan\n" +
+                    "\nDibuat Oleh          : " +pelanggan.getNama()+
+                    "\nJumlah hari          : " +jumlahHari+
+                    "\nProses booking untuk : " +kamar.getHotel().getNama()+
+                    "\nKamar Nomor          : " +kamar.getNomorKamar()+
+                    "\ntipe kamar           : " +kamar.getTipeKamar()+
+                    "\nStatus               : " +final_status;
         }
-        return "\n Pesanan" +
-                "\n pelanggan=" + pelanggan.getNama() +
-                "\n jumlah hari=" + jumlahHari +
-                "\n hotel=null" +
-                "\n kamar=null" +
-                "\n tipeKamar=" +
-                "\n status='" + final_status;
+        return  "\nPesanan\n" +
+                "\nDibuat Oleh          : " +pelanggan.getNama()+
+                "\nJumlah hari          : " +jumlahHari+
+                "\nProses booking untuk : null" +
+                "\nKamar Nomor          : null" +
+                "\ntipe kamar           : null" +
+                "\nStatus               : " +final_status;
     }
 }

@@ -27,7 +27,11 @@ public class PelangganSudahAdaException extends Exception{
 
     public String getPesan()
     {
-        return super.getMessage() + pelanggan_error + " sudah terdaftar.";
+        return super.getMessage()+
+                "\nID       : "+ pelanggan_error.getID()+
+                "\nNama     : "+pelanggan_error.getNama()+
+                "\nEmail    : "+pelanggan_error.getEmail()+
+                "\nSudah terdaftar.";
     }
 }
 

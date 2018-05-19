@@ -16,7 +16,7 @@ public class PesananTidakDitemukanException extends Exception {
 
     public PesananTidakDitemukanException(Customer pelanggan_input)
     {
-        super("Data Customer dengan ID: ");
+        super("Pesanan yang dipesan oleh :");
         pelanggan_error = pelanggan_input;
     }
 

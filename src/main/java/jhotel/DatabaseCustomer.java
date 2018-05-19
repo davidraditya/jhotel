@@ -1,107 +1,111 @@
 package jhotel;
+
 import java.util.ArrayList;
 /**
- * Class Pesanan
+ * Class DatabaseCustomer berisi database user
  *
  * @author David Raditya K - 1506690372
- * @version 2018.04.12
+ * @version 2018.05.16
  */
-public class DatabaseCustomer
-{
-    /*
-     * Deklarasi variable
-     */
-    private static ArrayList<Customer> CUSTOMER_DATABASE = new ArrayList<Customer>();
+public class DatabaseCustomer{
+    private static ArrayList<Customer> CUSTOMER_DATABASE = new ArrayList<>();
     private static int LAST_CUSTOMER_ID = 0;
 
     /**
-     * Metode untuk menambah Customer
+     * Accessor untuk object dari class DatabaseCustomer
+     * untuk membuat ArrayList berisi customer
+     *
+     * @return CUSTOMER_DATABASE
+     */
+    public static ArrayList<Customer> getCustomerDatabase(){
+        return CUSTOMER_DATABASE;
+    }
+
+    /**
+     * Accessor untuk object dari class DatabaseCustomer
+     * untuk mendapatkan ID dari customer terakhir
      *
      * @return LAST_CUSTOMER_ID ID
      *
      */
-    public static int getLastCustomerId(){
+    public static int getLastCustomerID(){
         return LAST_CUSTOMER_ID;
     }
 
     /**
-     * Metode untuk menambah Customer
+     * Metode untuk menambah data Customer
      *
-     * @param baru customer baru
-     *
+     * @param baru
+     * @return true
      */
-    public static boolean addCustomer (Customer baru) throws PelangganSudahAdaException{
-        for (int i = 0; i < CUSTOMER_DATABASE.size(); i++) {
-            Customer tes = CUSTOMER_DATABASE.get(i);
-            if (tes.getID()==baru.getID() || tes.getNama().equals(baru.getNama())){
-                throw new PelangganSudahAdaException(tes);
+    public static boolean addCustomer(Customer baru) throws PelangganSudahAdaException
+    {
+        for(Customer customer : CUSTOMER_DATABASE){
+            if(customer.getID() == baru.getID() || customer.getEmail().equals(baru.getEmail())){
+                throw new PelangganSudahAdaException(baru);
             }
         }
-        LAST_CUSTOMER_ID=baru.getID();
         CUSTOMER_DATABASE.add(baru);
+        LAST_CUSTOMER_ID = baru.getID();
         return true;
     }
 
     /**
-     * Metode untuk menambah Customer
+     * Accessor untuk object dari class DatabaseCustomer
+     * untuk mendapatkan customer dengan id yang ditentukan
      *
-     * @param id id
-     *
+     * @param id
+     * @return customer
      */
     public static Customer getCustomer(int id)
     {
-        for (int i = 0; i < CUSTOMER_DATABASE.size(); i++) {
-            Customer tes = CUSTOMER_DATABASE.get(i);
-            if (tes.getID()==id){
-                return tes;
-            }
-        }
-        return null;
-    }
-
-    public static Customer getCustomerLogin(String email, String password){
-        for (int i = 0; i < CUSTOMER_DATABASE.size(); i++) {
-            Customer tes = CUSTOMER_DATABASE.get(i);
-            if (tes.getEmail().equals(email) || tes.getPassword().equals(password)){
-                return tes;
+        for(Customer customer : CUSTOMER_DATABASE){
+            if(customer.getID() == id){
+                return customer;
             }
         }
         return null;
     }
 
     /**
-     * Metode untuk menghapus customer
+     * Accessor untuk object dari class DatabaseCustomer
+     * untuk mendapatkan data login customer yang menggunakan email dan password
      *
-     * @param id customer
+     * @param email menentukan nilai email
+     * @param password menentukan nilai password
+     * @return customer
+     */
+    public static Customer getCustomerLogin(String email, String password)
+    {
+        for(Customer customer : CUSTOMER_DATABASE){
+            if(customer.getEmail().equals(email) && customer.getPassword().equals(password)){
+                return customer;
+            }
+        }
+        return null;
+    }
+
+    /**
+     * Method untuk menghapus data customer.
      *
+     * @return true
      */
     public static boolean removeCustomer(int id) throws PelangganTidakDitemukanException
     {
-        for (int i = 0; i < CUSTOMER_DATABASE.size(); i++) {
-            Customer coba = CUSTOMER_DATABASE.get(i);
-            if (coba.getID()==id){
-                Pesanan pesan = DatabasePesanan.getPesananAktif(coba);
+        for(Customer customer : CUSTOMER_DATABASE){
+            if (customer.getID() == id){
+                Pesanan pesan = DatabasePesanan.getPesananAktif(customer);
                 try {
-                    DatabasePesanan.removePesanan(coba);
-                } catch (PesananTidakDitemukanException test){
-                    System.out.println(test.getPesan());
+                    DatabasePesanan.removePesanan(customer);
                 }
-                if(CUSTOMER_DATABASE.remove(coba))
-                {
+                catch (PesananTidakDitemukanException e){
+                    System.out.println(e.getPesan());
+                }
+                if (CUSTOMER_DATABASE.remove(customer)){
                     return true;
                 }
             }
         }
-        throw new PelangganTidakDitemukanException(id);
+        return false;
     }
-
-    /**
-     * Metode untuk mengambil data di database
-     *
-     */
-    public static ArrayList<Customer> getCustomerDatabase()
-    {
-        return CUSTOMER_DATABASE;
-    }
-
 }

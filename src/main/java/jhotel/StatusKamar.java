@@ -14,15 +14,17 @@ public enum StatusKamar
     VACANT("Vacant");
     
     //mendeklarasi variabel
-    private String status;
+    private String deskripsi;
+
     /**
      * Constructor for StatusKamar
      * 
-     * @param status status kamar
+     * @param deskripsi status kamar
      * 
      */
-    StatusKamar(String status){
-        this.status=status;
+    StatusKamar(String deskripsi)
+    {
+        this.deskripsi = deskripsi;
     }
     
     /**
@@ -31,9 +33,9 @@ public enum StatusKamar
      * @return status status kamar
      * 
      */
-    public String toString(){
-        return status;
+    public String toString()
+    {
+        return deskripsi;
     }
-    
 }
 

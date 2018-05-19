@@ -7,7 +7,6 @@ package jhotel;
  */
 public abstract class Room
 {
-    // instance variables - replace the example below with your own
     private Hotel hotel;
     private String nomor_kamar;
     private StatusKamar status_kamar;
@@ -93,17 +92,19 @@ public abstract class Room
     
     public String toString(){
         if(DatabasePesanan.getPesananAktif(this) == null){
-            return  "\nNama hotel  : " + getHotel().getNama() +
-                    "\nTipe kamar  : " + getTipeKamar() +
-                    "\nHarga       : " + getDailyTariff() +
-                    "\nStatus kamar: " + getStatusKamar();
+            return "\nRoom\n"+
+                    "\nNama Hotel    : "+getHotel().getNama()+
+                    "\nTipe Kamar    : "+getTipeKamar()+
+                    "\nHarga         : "+getDailyTariff()+
+                    "\nStatus Kamar  : "+getStatusKamar();
         }
         else{
-            return  "\nNama hotel  : " + getHotel().getNama() +
-                    "\nTipe kamar  : " + getTipeKamar() +
-                    "\nHarga       : " + getDailyTariff() +
-                    "\nStatus kamar: " + getStatusKamar() +
-                    "\nPelanggan   : " + DatabasePesanan.getPesananAktif(this).getPelanggan().getNama();
+            return "\nRoom\n"+
+                    "\nNama Hotel    : "+getHotel().getNama()+
+                    "\nTipe Kamar    : "+getTipeKamar().toString()+
+                    "\nHarga         : "+getDailyTariff()+
+                    "\nStatus Kamar  : "+getStatusKamar()+
+                    "\nPelanggan     : "+ DatabasePesanan.getPesananAktif(this).getPelanggan().getNama();
         }
     }
     
